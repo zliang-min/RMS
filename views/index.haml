@@ -1,0 +1,84 @@
+!!!
+/
+  Originally design by Free CSS Templates
+  http://www.freecsstemplates.org
+  Released for free under a Creative Commons Attribution 2.5 License
+
+  Name       : TriColor 
+  Description: A two-column, fixed-width design with dark color scheme.
+  Version    : 1.0
+  Released   : 20090723
+%html
+  %head
+    %meta(name="keywords" content="recruitment manange nurun")
+    %meta(name="description" content="A recruitment management system for nurun.com")
+    %meta(http-equiv="content-type" content="text/html; charset=utf-8")
+    %title RMS - Recruitment Management System
+    = stylesheet_link_tag "style"
+  %body
+    #wrapper
+      #header
+        #logo
+          %h1= link_to "Nurun", "http://www.nurun.com"
+          %p= link_to "Recruitment Management System", url_for('/')
+        #search
+          %form{:method => "get", :action => url_for('/search')}
+            %fieldset
+              %input#search-text(type="text" name="s" size="15")
+              %input#search-submit(type="submit" value="Search")
+      #menu
+        %ul
+          %li.current_page_item
+            = link_to "Home", "#"
+          %li
+            = link_to "Blog", "#"
+          %li
+            = link_to "Photos", "#"
+          %li
+            = link_to "About", "#"
+          %li
+            = link_to "Links", "#"
+          %li
+            = link_to "Contact", "#"
+      #page
+        #page-bgtop
+          #page-bgbtm
+            #content
+            #sidebar
+              %ul
+                %li
+                  %h2 Aliquam tempus
+                  %p Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.
+                %li
+                  %h2 Categories
+                  %ul
+                    %li= link_to "Aliquam libero", "#"
+                    %li= link_to "Aliquam libero", "#"
+                    %li= link_to "Aliquam libero", "#"
+                    %li= link_to "Aliquam libero", "#"
+                    %li= link_to "Aliquam libero", "#"
+                    %li= link_to "Aliquam libero", "#"
+                    %li= link_to "Aliquam libero", "#"
+                %li
+                  %h2 Blogroll
+                  %ul
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                %li
+                  %h2 Archives
+                  %ul
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+                    %li= link_to "ABCDEF WEF WER", "#"
+            %div(style="clear: both;") &nbsp;
+    #footer
+      %p Copyright (c) 2008 #{link_to "nurun.com", "http://www.nurun.com"}. All rights reserved.

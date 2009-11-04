@@ -1,0 +1,3 @@
+script
+vendor/gems/*
+!vendor/gems/cache
