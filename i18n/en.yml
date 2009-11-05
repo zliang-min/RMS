@@ -1,0 +1,12 @@
+---
+# Follow alphabet order
+add: add
+description: description
+name: name
+
+category:
+  create: Create a category
+  text: category
+
+position:
+  create: Create a position

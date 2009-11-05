@@ -1,0 +1,49 @@
+!!!
+/
+  Originally design by Free CSS Templates
+  http://www.freecsstemplates.org
+  Released for free under a Creative Commons Attribution 2.5 License
+
+  Name       : TriColor 
+  Description: A two-column, fixed-width design with dark color scheme.
+  Version    : 1.0
+  Released   : 20090723
+%html
+  %head
+    %meta(name="keywords" content="recruitment manange nurun")
+    %meta(name="description" content="A recruitment management system for nurun.com")
+    %meta(http-equiv="content-type" content="text/html; charset=utf-8")
+    %title RMS - Recruitment Management System
+    = stylesheet_link_tag "default"
+    = yield_content :head
+  %body
+    #wrapper
+      #header
+        #logo
+          %h1= link_to "Nurun", "http://www.nurun.com"
+          %p= link_to "Recruitment Management System", url_for('/')
+        #search
+          %form{:method => "get", :action => url_for('/search')}
+            %fieldset
+              %input#search-text(type="text" name="s" size="15")
+              %input#search-submit(type="submit" value="Search")
+      #menu
+        %ul
+          %li.current_page_item
+            = link_to "Home", url_for('/')
+          %li
+            = link_to "Positions", url_for('/positions')
+          %li
+            = link_to "Profiles", url_for('/profiles')
+          %li
+            = link_to "Help", url_for('/help')
+      #page
+        #page-bgtop
+          #page-bgbtm
+            #content
+              = yield
+            #sidebar
+              = yield_content :sidebar
+            .clear-float &nbsp;
+    #footer
+      %p Copyright (c) 2009 #{link_to "nurun.com", "http://www.nurun.com"}. All rights reserved.

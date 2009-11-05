@@ -25,7 +25,7 @@ if RACK_ENV == 'test'
 else
   DataMapper.setup(:default, {
     :adapter  => 'mysql',
-    :encoding => 'utf8',
+    :encoding => 'UTF-8',
     :soket    => '/tmp/mysql.sock',
     :database => "recruitment_#{RACK_ENV}",
     :username => 'root',

@@ -1,0 +1,44 @@
+- content_for :head do
+  = link_jqueryui_css('humanity')
+  = javascript_include_tag 'positions/index'
+  = include_google_jsapi jquery: '1.3', jqueryui: '1.7'
+
+- #----------------------------------------
+- sidebar 'Tools' => [['Add a new position', url_for('/positions/new'), {id: 'button-link-position-new'}]]
+
+- #----------------------------------------
+#position-form.dialog{'data-dialog-title' => i18n.position.create, 'data-dialog-width' => 600, 'data-dialog-height' => 300}
+  %form(action="/positions" method="POST")
+    %table
+      %tbody
+        %tr
+          %td
+            %label(for="category")= i18n.category.text
+          %td
+            %select(name="category")
+            = link_to "(#{i18n.add})", "/categories", id: 'button-link-category-new'
+        %tr
+          %td
+            %label(for="name")= i18n.name
+          %td
+            %input(type="text" name="name" size="255")
+        %tr
+          %td
+            %label(for="description")= i18n.description
+          %td
+            %textarea(name="description")
+
+#category-form.dialog.modal{'data-dialog-title' => i18n.category.create}
+  %form(action="/categories" method="POST")
+    %table
+      %tbody
+        %tr
+          %td
+            %label(for="name")= i18n.name
+          %td
+            %input(type="text" name="name" size="255")
+        %tr
+          %td
+            %label(for="description")= i18n.description
+          %td
+            %textarea(name="description")

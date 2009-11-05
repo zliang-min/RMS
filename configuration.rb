@@ -27,7 +27,11 @@ module Nurun
               config.http_images_path      = '/images'
               config.http_javascripts_path = '/js'
 
-              config.output_style = :compressed #:nested, :expanded, :compact
+              if RACK_ENV == 'production'
+                config.output_style = :compressed #:nested, :expanded, :compact
+              else
+                config.output_style = :expanded
+              end
 
               config.sass_options = {
                 :cache => (RACK_ENV == 'production' and false or true),

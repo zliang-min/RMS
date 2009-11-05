@@ -12,9 +12,12 @@ module Nurun
         session[:locale] = params[:locale] or options.default_locale
       end
 
+      helpers do
+      end
+
       # assets paths
       get '/css/*.css' do |css_file|
-        content_type 'text/css', :charset => 'utf-8'
+        content_type 'text/css', :charset => 'UTF-8'
         sass css_file.to_sym
       end
       # end
@@ -26,6 +29,10 @@ module Nurun
       get '/' do
         haml :index
       end
+
+      mount Position
+      mount Category
+
     end # App
   end # Recruitment
 end # Nurun
