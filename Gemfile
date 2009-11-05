@@ -2,6 +2,7 @@ clear_sources
 # bundle_path "vendor/gems"
 
 source "http://gemcutter.org"
+#source "http://gems.rubyforge.org"
 source "http://gems.github.com"
 
 disable_rubygems # cool
@@ -26,6 +27,8 @@ gem 'dm-validations', '~> 0.10.1'
 #gem 'state_machine', '~> 0.8.0'
 
 gem 'haml', '~> 2.2.10'
+
+gem 'json', '~> 1.1.9'
 
 only :test do
   gem 'do_sqlite3'
