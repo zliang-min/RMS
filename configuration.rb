@@ -34,7 +34,7 @@ module Nurun
               end
 
               config.sass_options = {
-                :cache => (RACK_ENV == 'production' and false or true),
+                :cache => (RACK_ENV == 'production'),
                 :cache_location => File.join(root_dir, 'tmp/sass_cache')
               }
             }

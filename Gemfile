@@ -22,13 +22,14 @@ gem 'sinatras-hat', '0.1.2', :vendored_at => 'vendor/sinatras-hat-0.1.2'
 
 gem 'do_mysql', :except => :test
 gem 'dm-core', '~> 0.10.1'
-gem 'dm-is-state_machine', '~> 0.10.1'
 gem 'dm-validations', '~> 0.10.1'
+gem 'dm-serializer', '~> 0.10.1', :require_as => 'dm-serializer/to_json' # I just need this now
+gem 'dm-is-state_machine', '~> 0.10.1'
 #gem 'state_machine', '~> 0.8.0'
 
 gem 'haml', '~> 2.2.10'
 
-gem 'json', '~> 1.1.9'
+#gem 'json', '~> 1.1.9'
 
 only :test do
   gem 'do_sqlite3'

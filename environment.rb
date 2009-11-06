@@ -1,13 +1,16 @@
 # Setup the environment for the application.
 
 # Rack environment
-RACK_ENV = ENV['RACK_ENV'] or 'development' unless defined?(RACK_ENV)
+RACK_ENV = ENV['RACK_ENV'] || 'development' unless defined?(RACK_ENV)
 
 root_dir = File.expand_path(File.dirname(__FILE__))
 
 # Load dependencies
 require File.join(root_dir, 'vendor/gems/environment')
 Bundler.require_env RACK_ENV
+
+# Load standard libs
+require 'json'
 
 # Setup loas path
 $LOAD_PATH[0, 0] = %w[. models lib].map { |d| File.join(root_dir, d) }

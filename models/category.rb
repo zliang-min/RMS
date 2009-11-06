@@ -2,7 +2,7 @@ class Category
   include DataMapper::Resource
 
   property :id, Serial
-  property :name, String, :length => (1..255)
+  property :name, String, :nullable => false, :length => 255
   property :description, String, :length => 500
 
   has n, :positions

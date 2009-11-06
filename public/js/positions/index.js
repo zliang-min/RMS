@@ -22,32 +22,45 @@ var onLoadCallback = (function() {
   function _handleFormSubmit(form, options) {
     form.submit(function(event) {
       event.preventDefault();
-      $.post(this.action + '.json', $(this).serialize(), function(data, statusText) {
-        if(statusText == 'success') {
-          if(options.onSuccess) options.onSuccess.call(form, data);
-        } else {
-          if(options.onError) options.onError.call(form, data);
-        }
-      }, 'json');
+      $.ajax({
+        type: 'POST',
+        url: this.action + '.json',
+        dataType: 'json',
+        data: $(this).serialize(),
+        success: options.onSuccess,
+        error: function(req, text) { alert(errorMsg(req)) }
+      });
       return false;
     });
+  }
+
+  function errorMsg(req) {
+    try {
+      var error = eval('(' + req.responseText + ')');
+    } catch(e) {
+      var error = {}
+    }
+    var msg = [];
+    for(var k in error) {
+      msg.push(error[k])
+    }
+    return msg.join("\n");
   }
 
   function handleFormSubmit() {
     _handleFormSubmit($('#category-form').find('form'), {
       onSuccess: function(data) {
+        $('<option/>').attr('value', data.id).attr('selected', 'selected').
+          text(data.name).appendTo(
+            $('#position-form').find('select[name=position[category]]')
+          );
         $('#category-form').dialog('close');
-      },
-      onError: function(data) {
-        alert('opps');
       }
     });
     _handleFormSubmit($('#position-form').find('form'), {
       onSuccess: function(data) {
+        addPosition(data);
         $('#position-form').dialog('close');
-      },
-      onError: function(data) {
-        alert('opps');
       }
     });
   }
@@ -61,6 +74,15 @@ var onLoadCallback = (function() {
         return false;
       });
     });
+  }
+
+  function addPosition(object) {
+    var tr = $('<tr/>');
+    $('<td/>').text(object.category.name).appendTo(tr);
+    $('<td/>').text(object.name).appendTo(tr);
+    $('<td/>').text(object.description).appendTo(tr);
+    $('<td/>').text(object.state).appendTo(tr);
+    tr.appendTo($('#position-list').find('tbody'));
   }
 
   return function() {

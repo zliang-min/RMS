@@ -1,32 +1,60 @@
+- #---------------------------------------- head
 - content_for :head do
-  = link_jqueryui_css('humanity')
+  = stylesheet_link_tag "positions/index"
+  = link_jqueryui_css 'humanity'
   = javascript_include_tag 'positions/index'
   = include_google_jsapi jquery: '1.3', jqueryui: '1.7'
 
-- #----------------------------------------
-- sidebar 'Tools' => [['Add a new position', url_for('/positions/new'), {id: 'button-link-position-new'}]]
+- #---------------------------------------- sidebar
+- sidebar i18n.tools => [[i18n.position.add, url_for('/positions/new'), {id: 'button-link-position-new'}]]
 
-- #----------------------------------------
+- #---------------------------------------- content
+- if @positions.nil? or @positions.empty?
+  .notice= i18n.position.none(link_to i18n.here, url_for('/positions/new'))
+- else
+  %table
+    %thead
+      %tr
+        %th= i18n.category.text
+        %th= i18n.name
+        %th= i18n.description
+        %th= i18n.state
+        %th
+    %tbody
+      - @positions.each do |position|
+        %tr
+          %td&= position.category.name
+          %td&= position.name
+          %td&= position.description
+          %td&= show_position_state(position)
+          %td
+
+- #---------------------------------------- dialogs
 #position-form.dialog{'data-dialog-title' => i18n.position.create, 'data-dialog-width' => 600, 'data-dialog-height' => 300}
   %form(action="/positions" method="POST")
     %table
       %tbody
         %tr
           %td
-            %label(for="category")= i18n.category.text
+            %label(for="position[category]")= i18n.category.text
           %td
-            %select(name="category")
-            = link_to "(#{i18n.add})", "/categories", id: 'button-link-category-new'
+            %select(name="position[category]")
+            = link_to "(#{i18n.add})", url_for('/categories'), id: 'button-link-category-new'
         %tr
           %td
-            %label(for="name")= i18n.name
+            %label(for="position[name]")= i18n.name
           %td
-            %input(type="text" name="name" size="255")
+            %input(type="text" name="position[name]")
         %tr
           %td
-            %label(for="description")= i18n.description
+            %label(for="position[description]")= i18n.description
           %td
-            %textarea(name="description")
+            %textarea(name="position[description]")
+        %tr
+          %td
+            %label(for="position[need]")= i18n.position.need
+          %td
+            %input(type="text" name="position[need]")
 
 #category-form.dialog.modal{'data-dialog-title' => i18n.category.create}
   %form(action="/categories" method="POST")
@@ -34,11 +62,11 @@
       %tbody
         %tr
           %td
-            %label(for="name")= i18n.name
+            %label(for="category[name]")= i18n.name
           %td
-            %input(type="text" name="name" size="255")
+            %input(type="text" name="category[name]")
         %tr
           %td
-            %label(for="description")= i18n.description
+            %label(for="category[description]")= i18n.description
           %td
-            %textarea(name="description")
+            %textarea(name="category[description]")

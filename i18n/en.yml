@@ -1,12 +1,31 @@
 ---
 # Follow alphabet order
 add: add
+copyright: Copyright (c) %1 %2. All rights reserved.
 description: description
+help: help
+here: here
+home: home
 name: name
+nurun: nurun
+offered: %1 offered
+recruiting: recruiting
+state: state
+title: RMS - Recruitment Management System
+tools: tools
+
+RMS: Recruitment Management System
 
 category:
   create: Create a category
   text: category
 
 position:
+  add: Add a new position
   create: Create a position
+  need: need
+  none: We have no positions yet. Click %1 to create one.
+  tab: positions
+
+profile:
+  tab: profiles
